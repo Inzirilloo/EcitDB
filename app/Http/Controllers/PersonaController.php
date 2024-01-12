@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Persona;
+
 class PersonaController extends Controller
 {
     //
@@ -23,9 +24,11 @@ class PersonaController extends Controller
     }
 */
 
-    public function show($nome)
+    public function show(Request $request)
     {
-        $persone = Persona::where('nome', $nome)->get();
+        $persona = new Persona();
+        $persona->nome = $request->nome;
+        $persone = Persona::where('nome', $persona->nome)->get();
         //$persona = Persona::with('nome')->get();
         //$persona = Persona::find($id);
         /* compcat crea un array con dentro le variabili del'oggetto richiesto in sto caso se tu richiedi di vedere
@@ -59,8 +62,8 @@ class PersonaController extends Controller
         //cioe un oggetto con le caratteristiche 
         //del modello Persona , metto le () perche
         //è il costruttore
-        
-        
+
+
         /*$request->validate([
                 'nome' => 'required|min:2|max:100',
                 'cognome' => 'required|min:10',
@@ -74,7 +77,7 @@ class PersonaController extends Controller
             ]
         );
 */
-        
+
         $persona = new Persona();
 
         $persona->nome = $request['nome'];
@@ -86,10 +89,10 @@ class PersonaController extends Controller
         return redirect('/persone');
         //return view('index');
 
-        
-        
 
-//User got saved show OK message
+
+
+        //User got saved show OK message
         //return Response::json(array('success' => true, 'user_added' => 1), 200);
         // quando si usa un metodo post meglio usare view
         //quando si usa un get puoi anche usare redirect
@@ -105,7 +108,7 @@ class PersonaController extends Controller
     // puoi usare il linguaggio eloquent solo
     // se hai creato un midello
     // senno dovresti usare sintatssi sql
-   /* public function destroy(Request $request)
+    /* public function destroy(Request $request)
     { 
         $persona = Persona::find($request);
         $persona->delete();
@@ -113,7 +116,7 @@ class PersonaController extends Controller
     }
     */
     public function destroy($id)
-    { 
+    {
         $persona = Persona::find($id);
         $persona->delete();
         /*$max = Persona('persone')->max('id') + 1; 
@@ -143,6 +146,6 @@ class PersonaController extends Controller
         $persona->nome = $request->input('nome');
         $persona->cognome = $request->input('cognome');
         $persona->update();
-        return redirect('persone')->with('status','Persona Updated Successfully');
+        return redirect('persone')->with('status', 'Persona Updated Successfully');
     }
 }

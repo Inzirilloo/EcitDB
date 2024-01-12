@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 Route::get('/persone', [PersonaController::class, 'index'])->name('persona.index');
 
-Route::post('/show/{nome}', [PersonaController::class, 'show'])->name('persona.show');
+Route::post('/show', [PersonaController::class, 'show'])->name('persona.show');
+
+//Route::get('/show/[nome}', [PersonaController::class, 'show'])->name('persona.show');
 
 Route::get('/create', [PersonaController::class, 'create'])->name('persona.create');
 
