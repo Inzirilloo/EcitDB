@@ -9,11 +9,11 @@ class PersonaController extends Controller
     //
     public function index()
     {
-        $i =0;
+        // passo sto index perche con il foreach 
+        //invece di contare l'id conta per in maniera normale da 1 a max
         $persone = Persona::all();
         //dd();
-        return view('index', compact('persone'), compact('i'));
-
+        return view('index', compact('persone'));
         //return view('layout.backoffice', compact('persone'));
     }
 
@@ -23,14 +23,18 @@ class PersonaController extends Controller
     }
 */
 
-    public function show(Persona $persona)
+    public function show($nome)
     {
+        $persone = Persona::where('nome', $nome)->get();
+        //$persona = Persona::with('nome')->get();
+        //$persona = Persona::find($id);
         /* compcat crea un array con dentro le variabili del'oggetto richiesto in sto caso se tu richiedi di vedere
         quella determinata persona ti restitusice quella perche quando vai nella classe persona prende la view 
         che questo metodo show gli ha dato e te lo piazza sul sito
         cioe sto metodo ti restituisce l'oggetto persona*/
-        return view('show', compact('persona'));
+        return view('show', compact('persone'));
     }
+
 
     // questo metodo è collegato ad una rotta che 
 
@@ -55,13 +59,23 @@ class PersonaController extends Controller
         //cioe un oggetto con le caratteristiche 
         //del modello Persona , metto le () perche
         //è il costruttore
+        
+        
         /*$request->validate([
-            'nome' => 'required|min:2|max:100',
-            'cognome' => 'required|min:10',
-        ]);*/
+                'nome' => 'required|min:2|max:100',
+                'cognome' => 'required|min:10',
+            ],
+            [
+                'title.required' => 'Il Nome è obbligatorio; per favore inserisci un titolo',
+                'title.min' => 'Hai scritto un titolo troppo corto; per favore inseriscine uno più lungo',
+                'title.max' => 'Hai scritto un titolo troppo lungo; per favore inseriscine uno più corto',
+                'cognome.required' => 'La descrizione è obbligatoria; per favore inseriscila',
+                'cognome.min' => 'Hai scritto una descrizione troppo corta; per favore inseriscine una più lunga',
+            ]
+        );
+*/
         
-        
-        $persona = new Persona;
+        $persona = new Persona();
 
         $persona->nome = $request['nome'];
         $persona->cognome = $request['cognome'];
@@ -102,7 +116,6 @@ class PersonaController extends Controller
     { 
         $persona = Persona::find($id);
         $persona->delete();
-
         /*$max = Persona('persone')->max('id') + 1; 
         ecitprova::statement("ALTER TABLE persone AUTO_INCREMENT =  $max");*/
         return redirect('/persone');

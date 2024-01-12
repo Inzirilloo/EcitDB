@@ -18,6 +18,9 @@ class Persona extends Model
     // non è vero il modello non è inutile se non faccio questo
     //comando non mi trova la tabella non so perchè però
     // il modello è tipo un tramite tra db e "'GUI'"??
+    // credo che il modello serva quando fai migrate
+    // facendo $table = 'persone' ho specificato il nome della tabella
+    // senno avrebbe scritto personas
     protected $table = 'persone';
     protected $fillable = array('id', 'nome', 'cognome'); 
 }

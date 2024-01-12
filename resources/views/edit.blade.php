@@ -9,8 +9,6 @@ Editazione persona
 
 @endsection
 @section('main-content')
-
-
 <br> 
         <tr>
         <th scope="row">{{ $persona->id }}</th>

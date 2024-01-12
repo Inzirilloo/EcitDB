@@ -6,7 +6,24 @@
     <link href="stile.css" rel="stylesheet">
 
     <!-- Styles -->
-    
+    <style>
+.forma {
+  width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+button{
+ border:1px solid #f7f25f;
+ background-image: -webkit-gradient(linear, left  top, left bottom, from(#1708eb), to(#08ebe7));
+ position: relative;
+ left:125px;
+}
+</style>
 </head>
 
 <body>
@@ -14,34 +31,17 @@
   Pagina backoffice
 </h1>
 
+    <hr>
     @yield('title')
-
+        
     @yield('content')     
-
-    buongiorno
-    <br>
-    <a href = "{{ route('persona.gialloMetodo')}}" > 
-        GIallo
-    </a>
-
-    <br>
-
-    <a href = "{{ url('/show')}}" > 
-        Show
-    </a>
-
-    <br>
-
-    <a href="{{ route('persona.create') }}">
-                        Crea una nuova persona
-                    </a>
-
-    <br>
-    <a href="{{ route('persona.delete') }}">
-            distruggi una persona
-    </a>
-    <br>
     
+    <a href = "{{ url('/show')}}" > 
+        Show (scritto con url e non con route non schicciare tnato non fa nulla)
+    </a>
+
+    <br>
+
     <br>
         @yield('main-content')
 

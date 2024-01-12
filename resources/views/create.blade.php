@@ -32,6 +32,8 @@ Creazione nuova persona
         </tr>
     </table>
 </form>
+
+
 <!--<form action = "{{ route('persona.store') }}" method = "POST">
     @csrf
     

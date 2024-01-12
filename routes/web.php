@@ -18,15 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/persone', [PersonaController::class, 'index'])->name('persona.index');
 
-Route::get('/show', [PersonaController::class, 'show'])->name('persona.show');
+Route::post('/show/{nome}', [PersonaController::class, 'show'])->name('persona.show');
 
 Route::get('/create', [PersonaController::class, 'create'])->name('persona.create');
 
+//Route::post('/show/{id}', [PersonaController::class, 'show'])->name('persona.show');
 
-Route::get('/destroy', [PersonaController::class, 'showdestroy'])->name('persona.delete');
+//Route::get('/destroy/{id}', [PersonaController::class, 'showdestroy'])->name('persona.delete');
 //se non specifico che ci deve essre un id nella route non funziona
+//potrei farlo anche con la richiesta DELETE non so cosa cambierebbe però
 Route::post('/destroy/{id}', [PersonaController::class, 'destroy'])->name('persona.destroy');
 
 
@@ -53,8 +56,8 @@ Route::get('/giallo', [PersonaController::class, 'gialloMetodo'])->name('persona
 //Route::post('/persone/{id}', [PersonaController::class, 'phpedit'])->name('persona.edit');
 Route::get('/edit/{id}', [PersonaController::class, 'edit'])->name('persona.edit');
 
-Route::post('/edit/{id}', [PersonaController::class, 'edit'])->name('persona.edit');
-Route::put('/persone/{id}', [PersonaController::class, 'update'])->name('persona.update');
+//Route::post('/edit/{id}', [PersonaController::class, 'edit'])->name('persona.edit');
+Route::put('/persona/{id}', [PersonaController::class, 'update'])->name('persona.update');
 
 
 
