@@ -2,7 +2,7 @@
 
 @section('main-content')
 <h1> Benvenuto pagina show </h1>
-
+aaaaa
 <a href="{{ route('persona.index')}}">
     Schiaccia se vuoi tornare indietro
 </a>

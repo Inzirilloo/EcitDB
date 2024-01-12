@@ -54,6 +54,7 @@
                 </button>
         </form>
 -->
+
 <form action="{{ route('persona.destroy', [$persona->id]) }}" method="POST" class="form">
     @csrf
     <button type="submit">
@@ -87,6 +88,11 @@
 <br>
 
 @endforeach
+
+<form id="form">
+    <input hidden type="text" id="r" value="false">
+</form>
+
 <!-- questo if lo faccio perchè se io provo a fare $persona->nome mi dice che non è definito
 se non esistono ancora delle persone nel database
 percio sizeof ritorna true se ce almeno una roba dentro 
@@ -102,12 +108,31 @@ ma la uso cosi vabbe ok-->
     <h4> Nome di chi vuoi cercare </h4>
     <input type="text" id="nome" name="nome">
     <br>
-    <button type="submit"> show</button>
-
+    <button type="submit">show</button>
 </form>
+
+@csrf
+<!--
+        conviene usare put o post
+        @method('PUT')
+        -->
+<button type="submit">indietro</button>
+
 @endif
 
+@if(sizeof($persone) == 0)
+<form action="{{ route('persona.index') }}" method="GET" class="form">
+    @csrf
+    <!--
+        conviene usare put o post
+        @method('PUT')
+        -->
+    <button type="submit">indietro</button>
+</form>
+
+@endif
 <br>
+
 fine pagina index!
 <hr>
 <br></br>

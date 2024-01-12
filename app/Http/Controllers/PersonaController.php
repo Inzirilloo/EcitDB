@@ -26,16 +26,18 @@ class PersonaController extends Controller
 
     public function show(Request $request)
     {
+
         $persona = new Persona();
         $persona->nome = $request->nome;
         $persone = Persona::where('nome', $persona->nome)->get();
+
         //$persona = Persona::with('nome')->get();
         //$persona = Persona::find($id);
         /* compcat crea un array con dentro le variabili del'oggetto richiesto in sto caso se tu richiedi di vedere
         quella determinata persona ti restitusice quella perche quando vai nella classe persona prende la view 
         che questo metodo show gli ha dato e te lo piazza sul sito
         cioe sto metodo ti restituisce l'oggetto persona*/
-        return view('show', compact('persone'));
+        return view('index', compact('persone'));
     }
 
 
@@ -45,6 +47,7 @@ class PersonaController extends Controller
     {
         return view('create');
     }
+
     public function gialloMetodo()
     {
         return view('giallo');
@@ -77,7 +80,6 @@ class PersonaController extends Controller
             ]
         );
 */
-
         $persona = new Persona();
 
         $persona->nome = $request['nome'];
@@ -88,20 +90,14 @@ class PersonaController extends Controller
         //$persona->save();
         return redirect('/persone');
         //return view('index');
-
-
-
-
         //User got saved show OK message
         //return Response::json(array('success' => true, 'user_added' => 1), 200);
         // quando si usa un metodo post meglio usare view
         //quando si usa un get puoi anche usare redirect
-
         //return redirect()->back()->with('success', 'Comment stored successfully!');
         //return view('persone');
         //return redirect()->back()->with(\Session::flash('flash_message', 'Messo correttamente 👍'));
         //return redirect('')
-
     }
 
 
