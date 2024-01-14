@@ -67,19 +67,22 @@ class PersonaController extends Controller
         //è il costruttore
 
 
-        /*$request->validate([
+        $request->validate(
+            [
                 'nome' => 'required|min:2|max:100',
-                'cognome' => 'required|min:10',
+                'cognome' => 'required|min:3|max:100',
             ],
             [
-                'title.required' => 'Il Nome è obbligatorio; per favore inserisci un titolo',
-                'title.min' => 'Hai scritto un titolo troppo corto; per favore inseriscine uno più lungo',
-                'title.max' => 'Hai scritto un titolo troppo lungo; per favore inseriscine uno più corto',
-                'cognome.required' => 'La descrizione è obbligatoria; per favore inseriscila',
-                'cognome.min' => 'Hai scritto una descrizione troppo corta; per favore inseriscine una più lunga',
+                'nome.required' => 'Il Nome è obbligatorio; per favore inserisci un Nome',
+                'nome.min' => 'Hai scritto un Nome troppo corto; per favore inseriscine uno più lungo',
+                'nome.max' => 'Hai scritto un Nome troppo lungo; per favore inseriscine uno più corto',
+                'cognome.required' => 'Il cognome è obbligatorio; per favore inseriscilo',
+                'cognome.min' => 'Hai scritto un cognome troppo corto; per favore inseriscine uno più lungo',
+                'cognome.max' => 'Hai scritto un Cognome troppo lungo; per favore inseriscine uno più corto',
+
             ]
         );
-*/
+
         $persona = new Persona();
 
         $persona->nome = $request['nome'];
@@ -138,6 +141,22 @@ class PersonaController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $request->validate(
+            [
+                'nome' => 'required|min:2|max:100',
+                'cognome' => 'required|min:3',
+            ],
+            [
+                //Hai scritto un Nome troppo corto; per favore inseriscine uno più lungo
+                'nome.required' => 'Il Nome è obbligatorio; per favore inserisci un Nome',
+                'nome.min' => 'inserisci un nome di almeno 2 caratteri',
+                'nome.max' => 'Hai scritto un Nome troppo lungo; per favore inseriscine uno più corto',
+                'cognome.required' => 'Il cognome è obbligatorio; per favore inseriscilo',
+                'cognome.min' => 'Hai scritto un cognome troppo corto; per favore inseriscine uno più lungo',
+            ]
+        );
+
         $persona = Persona::find($id);
         $persona->nome = $request->input('nome');
         $persona->cognome = $request->input('cognome');

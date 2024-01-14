@@ -111,22 +111,23 @@ ma la uso cosi vabbe ok-->
     <button type="submit">show</button>
 </form>
 
-@csrf
-<!--
-        conviene usare put o post
-        @method('PUT')
-        -->
-<button type="submit">indietro</button>
-
-@endif
-
-@if(sizeof($persone) == 0)
 <form action="{{ route('persona.index') }}" method="GET" class="form">
     @csrf
     <!--
         conviene usare put o post
         @method('PUT')
         -->
+    <button type="submit">indietro</button>
+</form>
+@endif
+
+@if(sizeof($persone) == 0)
+<form action="{{ route('persona.index') }}" method="GET" class="form">
+    @csrf
+    <!--
+    conviene usare put o post
+    @method('PUT')
+-->
     <button type="submit">indietro</button>
 </form>
 

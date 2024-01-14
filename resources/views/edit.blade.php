@@ -13,7 +13,7 @@
 <tr>
     <th scope="row">{{ $persona->id }}</th>
     <td>{{ $persona->nome }}</td>
-    <td>{{ $persona->cognome }}&dollar;</td>
+    <td>{{ $persona->cognome }}</td>
 
     <form action="{{ route('persona.update', [$persona->id]) }}" method="POST">
         <!-- per un qualche motivo se non metto
@@ -37,5 +37,14 @@
 </table>
 </form>
 
+@if ($errors->any())
+<div>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 @endsection

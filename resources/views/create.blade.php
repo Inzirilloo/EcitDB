@@ -3,35 +3,44 @@
 @section ('title')
 
 
-<h1 class= "titolo">
-Creazione nuova persona
+<h1 class="titolo">
+    Creazione nuova persona
 </h1>
 
 @endsection
 @section('main-content')
 
-<form action = "{{ route('persona.store') }}" method = "POST">
+<form action="{{ route('persona.store') }}" method="POST">
     <!-- per un qualche motivo se non metto
     csrf il sito si expired -->
-@csrf
+    @csrf
 
-<table>
+    <table>
 
         <tr>
             <td>Nome</td>
-            <td><input type="text" name="nome" value="" id = "nome"></td>
+            <td><input type="text" name="nome" value="" id="nome"></td>
         </tr>
         <tr>
             <td>Cognome</td>
-            <td><input type="text" name="cognome" value="" id = "cognome"></td>
+            <td><input type="text" name="cognome" value="" id="cognome"></td>
         </tr>
-            <td></td>
-            <td>
-                <input type="submit" />
-            </td>
+        <td></td>
+        <td>
+            <input type="submit" />
+        </td>
         </tr>
     </table>
 </form>
+@if ($errors->any())
+<div>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 
 <!--<form action = "{{ route('persona.store') }}" method = "POST">
