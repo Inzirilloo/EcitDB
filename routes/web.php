@@ -71,5 +71,3 @@ invece di fare robe strane nbasta che chiami sta rotta
 lo puoi usare internamente perche devi capire che ora hai creato una rotta con nome
 persone.gialloMetodo che puoi chimare in altre pagine quindi in realtà puoi anche non metterlo
 il name*/
-
-Auth::route();
